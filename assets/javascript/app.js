@@ -26,62 +26,110 @@ $(document).ready(function () {
     $("#choice1-row").hide();
     $("#choice2-row").hide();
 
-    $("#start-button").click(function () {
-        //Shows all elements for the trivia question
-        //Hides instructions
-        $("#instructions-row").hide();
-        $("#ready-gif-row").hide();
-        $("#timer-row").show()
-        $("#question-row").show();
-        $(".padding-row").show();
-        $("#choice1-row").show();
-        $("#choice2-row").show();
-        console.log("Inside the onclick for the start button");
+    $("#start-button").on("click", triviaObj.startGame);
+
+});
+
+    // $("#start-button").click(function () {
+    //     //Shows all elements for the trivia question
+    //     //Hides instructions
+    //     $("#instructions-row").hide();
+    //     $("#ready-gif-row").hide();
+    //     $("#timer-row").show()
+    //     $("#question-row").show();
+    //     $(".padding-row").show();
+    //     $("#choice1-row").show();
+    //     $("#choice2-row").show();
+    //     console.log("Inside the onclick for the start button");
 
         //An object full of questions and answers
-        var questionsObj = {
-            correct: 0;
-            incorrect: 0;
-            timer: 20;
+        var triviaObj = {
+            correct: 0,
+            incorrect: 0,
+            timerId: '',
+            timer: 20,
             questions: {
-            q1: 'What is the sigil of house Stark?',
+                q1: 'What is the sigil of house Stark?',
                 q2: 'What is Dany\'s black dragon\s name?',
-                    q3: 'How many children did Ned Stark Have?',
-                        q4: 'What does Tyrion do?',
-                            q5: "Where does Viserys die?",
-                                q6: 'How many days does the Fight for the living take?',
-                                    q7: "Who is the leader of the wildings?"
+                q3: 'How many children did Ned Stark Have?',
+                q4: 'What does Tyrion do?',
+                q5: "Where does Viserys die?",
+                q6: 'How many days does the Fight for the living take?',
+                q7: "Who is the leader of the wildings?"
             },
             options: {
                 q1: ['Direwolf', 'Dragon', 'Rose', 'Lion'],
-                    q2: ['Viserion', 'Drogon', 'Veraxes', 'Balerion'],
-                        q3: ['6', '2', '1', '3'],
-                            q4: ['Drink and Know Things', 'Plot and Murder', 'Play and Eat', 'Nothing'],
-                                q5: ['In Quarth', 'In the Red Keep', 'In Vaes Dothrak', 'In the Great Grass Sea'],
-                                    q6: ['7', '2', '4', '1'],
-                                        q7: ['Jon', 'Ygritte', 'Mance', 'The Night King']
+                q2: ['Viserion', 'Drogon', 'Veraxes', 'Balerion'],
+                q3: ['6', '2', '1', '3'],
+                q4: ['Drink and Know Things', 'Plot and Murder', 'Play and Eat', 'Nothing'],
+                q5: ['In Quarth', 'In the Red Keep', 'In Vaes Dothrak', 'In the Great Grass Sea'],
+                q6: ['7', '2', '4', '1'],
+                q7: ['Jon', 'Ygritte', 'Mance', 'The Night King']
             },
             answers: {
                 q1: 'Direwolf',
-                    q2: 'Drogon',
-                        q3: '6',
-                            q4: 'Drink and Know Things',
-                                q5: 'In Vaes Dothrak',
-                                    q6: '1',
-                                        q7: 'Mance'
+                q2: 'Drogon',
+                q3: '6',
+                q4: 'Drink and Know Things',
+                q5: 'In Vaes Dothrak',
+                q6: '1',
+                q7: 'Mance'
+            },
+
+            startGame: function () {
+                //Shows all elements for the trivia question
+                //Hides instructions
+                $("#instructions-row").hide();
+                $("#ready-gif-row").hide();
+                $("#timer-row").show()
+                $("#question-row").show();
+                $(".padding-row").show();
+                $("#choice1-row").show();
+                $("#choice2-row").show();
+
+                //testing
+                console.log("Inside the onclick for the startgame function");
+
+                this.correct = 0;
+                this.incorrect = 0;
+
             },
 
             nextQuestion: function () {
-                trivia.timer = 0;
-            }
+                this.timer = 20;
+
+            },
+
         };
 
+//Need a function that starts the game
+//populates fields
+//starts timer
+// //
 
-        
-    });
+
+// function startTimer() {
+//     clearInterval(this.intervalId);
+//     this.intervalId = setInterval(decrement, 1000);
+// }
+
+// //  The decrement function.
+// function decrement() {
+//     //  Decrease number by one.
+//     timer--;
+
+//     //  Show the number in the #show-number tag.
+//     $("#show-number").html("<h2>" + number + "</h2>");
 
 
+//     //  Once number hits zero...
+//     if (number === 0) {
 
-    //
+//         //  ...run the stop function.
+//         stop();
 
-});
+//         //  Alert the user that time is up.
+//         alert("Time Up!");
+//     }
+// }
+// };
