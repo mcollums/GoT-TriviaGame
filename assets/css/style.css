@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+body {
+    background-color: rgb(247, 179, 247);
+}
+
 .container-custom {
     background-color: white;
     border-radius: 25px;
