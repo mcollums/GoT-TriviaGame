@@ -7,6 +7,7 @@ body {
     /* background-repeat: no-repeat;
     background-attachment: fixed; */
     background-position: center; 
+    font-family: 'Raleway', sans-serif;
 }
 
 .container-custom {
@@ -26,13 +27,13 @@ body {
 }
 
 #timer-heading {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 #question-heading {
     margin-top: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .padding-block {
@@ -47,4 +48,8 @@ body {
     background-color: rgb(255, 227, 66);
     height: 200px;
     border-radius: 25px;
+}
+
+.choice-text {
+    margin-top: 19%;
 }
