@@ -16,5 +16,11 @@
 
 //Start JS
 $(document).ready(function () {
+    //Hiding all the Unneeded HTML elements
+    $("#timer-row").hide();
+    $("#question-row").hide();
+    $(".padding-row").hide();
+    $("#choice1-row").hide();
+    $("#choice2-row").hide();
 
 });

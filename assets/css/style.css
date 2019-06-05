@@ -26,6 +26,14 @@ body {
     width: 70%;
 }
 
+#ready-gif-row {
+    margin-top: 80px;
+}
+
+#instructions-row {
+    margin-top: 20px;
+}
+
 #timer-heading {
     margin-top: 15px;
 }

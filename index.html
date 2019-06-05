@@ -31,15 +31,37 @@
                 <img src="assets/images/logo-01.png" id="title-image" alt="">
             </div>
         </div>
+
+        <!-- Start Game Screen -->
+        <div class="row" id="ready-gif-row">
+            <div class="col-lg-12">
+                <img id="gif-ready" src="https://media.giphy.com/media/Lm63QU87HvgVEuTV63/source.gif" alt="John Snow is Ready gif" >
+            </div>
+        </div>
+        <div class="row" id="instructions-row">
+            <!-- Padding Block -->
+            <div class="padding-block"></div>
+            <!-- Instructions Block -->
+            <div class="col-lg-10" id="instructions-block" >
+                <h1>Instructions: </h1>
+                <p>Welcome to Game of Thrones Trivia! The fight for the Iron Trivia Throne begins here, so be prepared.
+                    There are a series of 15 trivia questions. You will have 30 seconds to answer each question with
+                    multiple choice answers. Goodluck!</p>
+                <button id="start-button">I'm ready!</button>
+            </div>
+            <!-- Padding Block -->
+            <div class="padding-block"></div>
+        </div>
+
         <!-- Timer Row -->
-        <div class="row">
+        <div class="row" id="timer-row">
             <div class="col-lg-12">
                 <!-- Timer Heading -->
                 <h4 id="timer-heading"></h4>
             </div>
         </div>
         <!-- Question Row -->
-        <div class="row">
+        <div class="row" id="question-row">
             <div class="col-lg-12">
                 <!-- Question Heading -->
                 <h3 id="question-heading"></h3>
@@ -48,7 +70,7 @@
         <!-- Padding Row -->
         <div class="row padding-row"></div>
         <!-- Choice Row #1 -->
-        <div class="row">
+        <div class="row" id="choice1-row">
             <!-- Padding Block -->
             <div class="padding-block"></div>
             <!-- Choice 1 Block -->
@@ -65,7 +87,7 @@
         <!-- Padding Row -->
         <div class="row padding-row"></div>
         <!-- Choice Row #2 -->
-        <div class="row">
+        <div class="row" id="choice2-row">
             <!-- Padding Block -->
             <div class="padding-block"></div>
             <!-- Choice Block 3 -->
@@ -79,6 +101,9 @@
                 <h4 class="choice-text" id="choice-4"></h4>
             </div>
         </div>
+
+
+
     </div>
 
     <!-- Custom Javascript Tag -->
