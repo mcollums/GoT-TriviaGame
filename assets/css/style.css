@@ -1,0 +1,12 @@
+* {
+    text-align: center;
+}
+
+.container-custom {
+    background-color: white;
+    border-radius: 25px;
+}
+
+.padding-block {
+    width: 60px;
+}
