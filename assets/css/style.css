@@ -45,7 +45,7 @@ body {
 }
 
 .choice-block {
-    background-color: rgb(255, 227, 66);
+    /* background-color: rgb(255, 227, 66); */
     height: 200px;
     border-radius: 25px;
 }
