@@ -25,8 +25,22 @@ body {
     width: 70%;
 }
 
+#timer-heading {
+    margin-top: 20px;
+}
+
+#question-heading {
+    margin-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .padding-block {
     width: 60px;
+}
+
+.padding-row {
+    height: 30px;
 }
 
 .choice-block {
