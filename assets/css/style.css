@@ -9,8 +9,16 @@ body {
 .container-custom {
     background-color: white;
     border-radius: 25px;
+    margin-top: 50px;
+    height: 800px;
 }
 
 .padding-block {
     width: 60px;
+}
+
+.choice-block {
+    background-color: rgb(255, 227, 66);
+    height: 200px;
+    border-radius: 25px;
 }
