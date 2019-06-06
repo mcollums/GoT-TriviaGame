@@ -28,10 +28,11 @@ $(document).ready(function () {
     $("#choice2-row").hide();
     $("#result-gif-row").hide();
     $("#results-row").hide();
+    $("#endscreen-row").hide();
+
 
     $("#start-button").click(startGame);
     $(".choice-text").click(checkAnswer);
-    // $("#next-button").click(questionIndex++);
     $("#next-button").click(renderQuestion);
 
 
@@ -191,24 +192,26 @@ function showResult(outcome) {
 
     switch (questionIndex) {
         case 0:
-            $("#gif-result").attr("src", "https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+            $("#gif-result").attr("src", "https://media.giphy.com/media/iwVHUKnyvZKEg/giphy.gif");
             break;
         case 1:
-            $("#gif-result").attr("src", "https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+            $("#gif-result").attr("src", "https://media.giphy.com/media/iwVHUKnyvZKEg/giphy.gif");
             break;
         case 2:
-            $("#gif-result").attr("src", "https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+            $("#gif-result").attr("src", "https://media.giphy.com/media/iwVHUKnyvZKEg/giphy.gif");
             break;
     }
 };
 
-function endScreen() {
+function showEndscreen() {
     $("#timer-row").hide();
     $("#question-row").hide();
     $("#padding-row").hide();
     $("#choice1-row").hide();
     $("#choice2-row").hide();
     $("#endscreen-row").show();
+
+    stopTimer();
 
     //If correct answer is 13-15 then...
     if (triviaObj.correct >= 13) {
