@@ -31,7 +31,9 @@ $(document).ready(function () {
 
     $("#start-button").click(startGame);
     $(".choice-text").click(checkAnswer);
+    // $("#next-button").click(questionIndex++);
     $("#next-button").click(renderQuestion);
+
 
 
 
@@ -43,29 +45,29 @@ var triviaObj = {
     incorrect: 0,
     unanswered: 0,
     timerId: '',
-    timer: 20,
+    timer: 5,
 }
 
 var questionsArr = [
-{
-    question: "What is the sigil of house Stark?",
-    options: ['Direwolf', 'Dragon', 'Rose', 'Lion'],
-    answer: "Direwolf",
-    gif_url: ""
-},
-{
-    question: "What is Dany\'s black dragon\s name?",
-    options: ['Viserion', 'Drogon', 'Veraxes', 'Balerion'],
-    answer: "Drogon",
-    gif_url: ""
-},
-{
-    question: "How many children did Ned Stark Have?",
-    options: ['6', '2', '1', '3'],
-    answer: "6",
-    gif_url: ""
-}
-// ...
+    {
+        question: "What is the sigil of house Stark?",
+        options: ['Direwolf', 'Dragon', 'Rose', 'Lion'],
+        answer: "Direwolf",
+        gif_url: ""
+    },
+    {
+        question: "What is Dany\'s black dragon\s name?",
+        options: ['Viserion', 'Drogon', 'Veraxes', 'Balerion'],
+        answer: "Drogon",
+        gif_url: ""
+    },
+    {
+        question: "How many children did Ned Stark Have?",
+        options: ['6', '2', '1', '3'],
+        answer: "6",
+        gif_url: ""
+    }
+    // ...
 ];
 
 //Keeps track of which question we're on
@@ -80,6 +82,7 @@ function startGame() {
 
     triviaObj.correct = 0;
     triviaObj.incorrect = 0;
+
     // startTimer();
     renderQuestion();
 };
@@ -90,7 +93,14 @@ function renderQuestion() {
     $("#result-gif-row").hide();
     $("#results-row").hide();
 
+    //restarting timer
+    triviaObj.timer = 5;
     startTimer();
+
+    //If the game has been played once, add tothe questionsIndex
+    if (triviaObj.correct > 0 || triviaObj.incorrect > 0 || triviaObj.unanswered > 0) {
+        questionIndex++;
+    }
 
     // If there are still more questions, render the next one.
     if (questionIndex < questionsArr.length) {
@@ -113,8 +123,8 @@ function renderQuestion() {
         // show the game-related elements
     }
     // If there aren't, render the end game screen.
-    else {
-        showResults();
+    else { 
+        showEndscreen();
     }
 };
 
@@ -145,47 +155,79 @@ function showResult(outcome) {
     $("#results-row").show();
 
     stopTimer();
-    //  - start a 5-ish second timer, running "renderQuestion" function afterward
-    var showResultTimer = 5;
-    triviaObj.timerId = setInterval(decrement, 1000);
-    $("#timer-heading").text("Time Left: " + showResultTimer);
-    
-    //decreases interval by 1 every second
-    function decrement() {
-        showResultTimer--;
+    //function to start a 5 second timer
+    function resultTimer() {
+        var showResultTimer = 5;
+        triviaObj.timerId = setInterval(decrement, 1000);
         $("#timer-heading").text("Time Left: " + showResultTimer);
-        if (showResultTimer === 0) {
-            renderQuestion();    
-            questionIndex++;       
+
+        //decreases interval by 1 every second
+        function decrement() {
+            showResultTimer--;
+            $("#timer-heading").text("Time Left: " + showResultTimer);
+            if (showResultTimer === 0) {
+                renderQuestion();
+            }
         }
     };
 
     // show either good or bad stuff, depending on what outcome is
     if (outcome === "correct") {
+        //show for 5 seconds
+        resultTimer();
         $("#result-text").text("You are correct!");
-        console.log("You are correct!");
+        console.log("You are correct! " + triviaObj.correct);
     } else if (outcome === "incorrect") {
-        $("#result-text").text("You are incorrect! The correct answer was" + questionsArr[questionIndex].answer);
-        console.log("You are correct!");
+        //show for 5 seconds
+        resultTimer();
+        $("#result-text").text("You are incorrect! The correct answer was " + questionsArr[questionIndex].answer);
+        console.log("You are correct! " + triviaObj.correct );
     } else if (outcome === "unanswered") {
-        $("#result-text").text("Time has run out! The correct answer was" + questionsArr[questionIndex].answer);
-        console.log("Left Unanswered");
+        //show for 5 seconds
+        resultTimer();
+        $("#result-text").text("Time has run out! The correct answer was " + questionsArr[questionIndex].answer);
+        console.log("Left Unanswered. " + triviaObj.unanswered);
     }
 
-    switch (questionIndex) { 
-        case 0: 
-            $("#gif-result").attr("src","https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+    switch (questionIndex) {
+        case 0:
+            $("#gif-result").attr("src", "https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
             break;
-        case 1: 
-            $("#gif-result").attr("src","https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+        case 1:
+            $("#gif-result").attr("src", "https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
             break;
-        case 2: 
-            $("#gif-result").attr("src","https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
-            break;	
+        case 2:
+            $("#gif-result").attr("src", "https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+            break;
     }
 };
 
 function endScreen() {
+    $("#timer-row").hide();
+    $("#question-row").hide();
+    $("#padding-row").hide();
+    $("#choice1-row").hide();
+    $("#choice2-row").hide();
+    $("#endscreen-row").show();
+
+    //If correct answer is 13-15 then...
+    if (triviaObj.correct >= 13) {
+        $("#endscreen-text").text("You got " + triviaObj.correct + " out of 15 right! Great Job!");
+    //If correct answer is 10-12 then...
+    } else if (triviaObj.correct >= 10 && triviaObj.correct <= 12 ) {
+        $("#endscreen-text").text("Pretty good, you got " + triviaObj.correct + " out of 15 right!");
+    //If correct answer is 5-9 then...
+    } else if (triviaObj.correct >= 5 && triviaObj.correct <= 9 ) {
+        $("#endscreen-text").text("Meh, you got " + triviaObj.correct + " out of 15 right. Try again!"); 
+    //If correct answer is 0-4 then...
+    } else if (triviaObj.correct <= 4 ) {
+        $("#endscreen-text").text("Ouch. You got " + triviaObj.correct + " out of 15 right. Try again!"); 
+    }
+    $("#correct-count-text").text("Correct: " + triviaObj.correct); 
+    $("#incorrect-count-text").text("Incorrect: " + triviaObj.incorrect); 
+    $("#unanswered-count-text").text("Unanswered: " + triviaObj.unanswered); 
+
+
     // document.querySelector("#question").innerHTML = "Game Over!";
     // document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
 };
@@ -196,7 +238,7 @@ function startTimer() {
     clearInterval(triviaObj.timerId);
     triviaObj.timerId = setInterval(decrement, 1000);
     $("#timer-heading").text("Time Left: " + triviaObj.timer);
-    
+
     //decreases interval by 1 every second
     function decrement() {
         triviaObj.timer--;
@@ -204,12 +246,11 @@ function startTimer() {
         if (triviaObj.timer === 0) {
             clearInterval(triviaObj.timer);
             triviaObj.unanswered++;
-            // alert("Time's Up!");
             showResult("unanswered");
         }
     };
 };
 
-function stopTimer () {
+function stopTimer() {
     clearInterval(triviaObj.timerId);
 }
