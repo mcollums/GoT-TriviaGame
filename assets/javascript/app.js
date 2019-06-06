@@ -19,6 +19,7 @@
 
 //Start JS
 $(document).ready(function () {
+    console.log("Inside the documentready");
     //Hiding all the Unneeded HTML elements
     $("#timer-row").hide();
     $("#question-row").hide();
@@ -26,7 +27,9 @@ $(document).ready(function () {
     $("#choice1-row").hide();
     $("#choice2-row").hide();
 
-    $("#start-button").on("click", triviaObj.startGame);
+    $("#start-button").click(startGame);
+    $(".choice-text").click(checkAnswer)
+
 
 });
 
@@ -34,109 +37,162 @@ $(document).ready(function () {
 var triviaObj = {
     correct: 0,
     incorrect: 0,
+    unanswered: 0,
     timerId: '',
     timer: 20,
-    questions: {
-        q1: 'What is the sigil of house Stark?',
-        q2: 'What is Dany\'s black dragon\s name?',
-        q3: 'How many children did Ned Stark Have?',
-        q4: 'What does Tyrion do?',
-        q5: "Where does Viserys die?",
-        q6: 'How many days does the Fight for the living take?',
-        q7: "Who is the leader of the wildings?"
-    },
-    options: {
-        q1: ['Direwolf', 'Dragon', 'Rose', 'Lion'],
-        q2: ['Viserion', 'Drogon', 'Veraxes', 'Balerion'],
-        q3: ['6', '2', '1', '3'],
-        q4: ['Drink and Know Things', 'Plot and Murder', 'Play and Eat', 'Nothing'],
-        q5: ['In Quarth', 'In the Red Keep', 'In Vaes Dothrak', 'In the Great Grass Sea'],
-        q6: ['7', '2', '4', '1'],
-        q7: ['Jon', 'Ygritte', 'Mance', 'The Night King']
-    },
-    answers: {
-        q1: 'Direwolf',
-        q2: 'Drogon',
-        q3: '6',
-        q4: 'Drink and Know Things',
-        q5: 'In Vaes Dothrak',
-        q6: '1',
-        q7: 'Mance'
-    },
+}
 
-    //Function that starts the timer
-    startTimer: function () {
-        clearInterval(triviaObj.timerId);
-        triviaObj.timerId = setInterval(decrement, 1000);
-        //decreases interval by 1 every second
-        function decrement() {
-            triviaObj.timer--;
-            $("#timer-heading").text("Time Left: " + triviaObj.timer);
-            if (triviaObj.timer === 0) {
-                stop();
-                alert("Time's Up!");
-            }
-        }
+var questionsArr = [
+{
+    question: "What is the sigil of house Stark?",
+    options: ['Direwolf', 'Dragon', 'Rose', 'Lion'],
+    answer: "Direwolf",
+    gif_url: ""
+},
+{
+    question: "What is Dany\'s black dragon\s name?",
+    options: ['Viserion', 'Drogon', 'Veraxes', 'Balerion'],
+    answer: "Drogon",
+    gif_url: ""
+},
+{
+    question: "How many children did Ned Stark Have?",
+    options: ['6', '2', '1', '3'],
+    answer: "6",
+    gif_url: ""
+}
+// ...
+];
 
-        function stop() {
-            clearInterval(triviaObj.timerId);
-        }
-    },
+//Keeps track of which question we're on
+var questionIndex = 0;
 
-    startGame: function () {
-        //Shows all elements for the trivia question
-        //Hides instructions
-        $("#instructions-row").hide();
-        $("#ready-gif-row").hide();
-        $("#timer-row").show()
+//Runs when the "Start" button is clicked
+function startGame() {
+    //Hides instructions
+    $("#instructions-row").hide();
+    $("#ready-gif-row").hide();
+    $("#timer-row").show();
+
+    triviaObj.correct = 0;
+    triviaObj.incorrect = 0;
+    startTimer();
+    renderQuestion();
+};
+
+
+function renderQuestion() {
+    // hide all the results-related elements first
+
+    // If there are still more questions, render the next one.
+    if (questionIndex < questionsArr.length) {
+        console.log(questionIndex);
+        console.log(questionsArr[questionIndex].question);
+        // change the text for question
+        $("#question-heading").text(questionsArr[questionIndex].question);
+        // change the text for all the answer choices
+        $("#choice-1").text(questionsArr[questionIndex].options[0]);
+        $("#choice-2").text(questionsArr[questionIndex].options[1]);
+        $("#choice-3").text(questionsArr[questionIndex].options[2]);
+        $("#choice-4").text(questionsArr[questionIndex].options[3]);
+
+
         $("#question-row").show();
         $(".padding-row").show();
         $("#choice1-row").show();
         $("#choice2-row").show();
+        questionIndex++;
 
-        //testing
-        console.log("Inside the onclick for the startgame function");
-
-        this.correct = 0;
-        this.incorrect = 0;
-        triviaObj.startTimer();
-        triviaObj.nextQuestion();
-
-    },
-
-    nextQuestion: function () {
-        this.timer = 20;
-        questionCount = 0;
-        // $("#").empty();
-        if (questionCount === 0) {
-            $('#question-heading').text('Question: ' + this.questions.q1);
-            $('#choice-1').text(this.options.q1[0]);
-            $('#choice-2').text(this.options.q1[1]);
-            $('#choice-3').text(this.options.q1[2]);
-            $('#choice-4').text(this.options.q1[3]);
-
-        } else if (questionCount === 1) {
-            $('#question-heading').text('Question: ' + this.questions.q2);
-            $('#choice-1').text(this.options.q2[0]);
-            $('#choice-2').text(this.options.q2[1]);
-            $('#choice-3').text(this.options.q2[2]);
-            $('#choice-4').text(this.options.q2[3]);
-
-        } else if (questionCount === 2) {
-            $('#question-heading').text('Question: ' + this.questions.q3);
-            $('#choice-1').text(this.options.q3[0]);
-            $('#choice-2').text(this.options.q3[1]);
-            $('#choice-3').text(this.options.q3[2]);
-            $('#choice-4').text(this.options.q4[3]);
-
-        } else if (questionCount === 3) {
-            $('#question-heading').text('Question: ' + this.questions.q4);
-        } else if (questionCount === 4) {
-            $('#question-heading').text('Question: ' + this.questions.q5);
-        } else if (questionCount === 5) {
-            $('#question-heading').text('Question: ' + this.questions.q6);
-        } else if (questionCount === 6) {
-            $('#question-heading').text('Question: ' + this.questions.q7);
-        };
-    },
+        // show the game-related elements
+    }
+    // If there aren't, render the end game screen.
+    else {
+        showResults();
+    }
 };
+
+function checkAnswer() {
+    var outcome;
+    if ($(this).text() === questionsArr[questionIndex].answer) {
+        // answered correctly
+        outcome = "correct";
+    }
+    else {
+        // answered incorrectly
+        outcome = "incorrect";
+    }
+    // call the "showResult" function
+    showResults(outcome);
+
+    // at some point, we need to run renderQuestion again
+};
+
+function showResult(outcome) {
+    // show either good or bad stuff, depending on what outcome is
+    //  - start a 5-ish second timer, running "renderQuestion" function afterward
+};
+
+function endScreen() {
+    // document.querySelector("#question").innerHTML = "Game Over!";
+    // document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
+};
+
+
+//Function that starts the timer
+function startTimer() {
+    clearInterval(triviaObj.timerId);
+    triviaObj.timerId = setInterval(decrement, 1000);
+    $("#timer-heading").text("Time Left: " + triviaObj.timer);
+    
+    //decreases interval by 1 every second
+    function decrement() {
+        triviaObj.timer--;
+        $("#timer-heading").text("Time Left: " + triviaObj.timer);
+        if (triviaObj.timer === 0) {
+            clearInterval(triviaObj.timerId);
+            triviaObj.unanswered++;
+            // alert("Time's Up!");
+            showResults("unanswered");
+        }
+    };
+};
+
+// function nextQuestion() {
+//     this.timer = 20;
+//     questionCount = 0;
+//     // for (var i = 0; i <= questions.length)
+//     for (const key in questions) {
+//         let value = obj[key];
+//     }
+//     if (questionCount === 0) {
+//         $('#question-heading').text('Question: ' + this.questions.q1);
+//         $('#choice-1').text(this.options.q1[0]);
+//         $('#choice-2').text(this.options.q1[1]);
+//         $('#choice-3').text(this.options.q1[2]);
+//         $('#choice-4').text(this.options.q1[3]);
+
+//     } else if (questionCount === 1) {
+//         $('#question-heading').text('Question: ' + this.questions.q2);
+//         $('#choice-1').text(this.options.q2[0]);
+//         $('#choice-2').text(this.options.q2[1]);
+//         $('#choice-3').text(this.options.q2[2]);
+//         $('#choice-4').text(this.options.q2[3]);
+
+//     } else if (questionCount === 2) {
+//         $('#question-heading').text('Question: ' + this.questions.q3);
+//         $('#choice-1').text(this.options.q3[0]);
+//         $('#choice-2').text(this.options.q3[1]);
+//         $('#choice-3').text(this.options.q3[2]);
+//         $('#choice-4').text(this.options.q4[3]);
+
+//     } else if (questionCount === 3) {
+//         $('#question-heading').text('Question: ' + this.questions.q4);
+//     } else if (questionCount === 4) {
+//         $('#question-heading').text('Question: ' + this.questions.q5);
+//     } else if (questionCount === 5) {
+//         $('#question-heading').text('Question: ' + this.questions.q6);
+//     } else if (questionCount === 6) {
+//         $('#question-heading').text('Question: ' + this.questions.q7);
+//     };
+//     // };
+// };
