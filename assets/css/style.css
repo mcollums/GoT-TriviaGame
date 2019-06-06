@@ -17,6 +17,24 @@ body {
     height: 800px;
 }
 
+.padding-block {
+    width: 95px;
+}
+
+.padding-row {
+    height: 30px;
+}
+
+.choice-block {
+    /* background-color: rgb(255, 227, 66); */
+    height: 200px;
+    border-radius: 25px;
+}
+
+.choice-text {
+    margin-top: 19%;
+}
+
 #title-heading {
     height: 140px;
     margin-top: 10px;
@@ -35,6 +53,10 @@ body {
     margin-top: 20px;
 }
 
+#instructions-p {
+    margin-top: 15px;
+}
+
 /* Game Page Formatting */
 #timer-heading {
     margin-top: 15px;
@@ -46,20 +68,28 @@ body {
     padding-right: 25px;
 }
 
-.padding-block {
+.choice-padding-block {
     width: 60px;
 }
 
-.padding-row {
-    height: 30px;
+/* Results Page Formatting */
+#result-gif-row {
+    margin-top: 55px;
 }
 
-.choice-block {
-    /* background-color: rgb(255, 227, 66); */
-    height: 200px;
-    border-radius: 25px;
+#results-row {
+    margin-top: 20px;
 }
 
-.choice-text {
-    margin-top: 19%;
+#next-button {
+    margin-top: 15px;
+}
+
+/* Endscreen Formatting */
+#endscreen-row {
+    margin-top: 125px;
+}
+
+#playagain-button {
+    margin-top: 50px;
 }

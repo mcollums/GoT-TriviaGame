@@ -44,7 +44,7 @@ var triviaObj = {
     incorrect: 0,
     unanswered: 0,
     timerId: '',
-    timer: 5,
+    timer: 15,
 }
 
 var questionsArr = [
@@ -94,7 +94,7 @@ function renderQuestion() {
     $("#results-row").hide();
 
     //restarting timer
-    triviaObj.timer = 5;
+    triviaObj.timer = 15;
     startTimer();
 
     //If the game has been played once, add tothe questionsIndex
