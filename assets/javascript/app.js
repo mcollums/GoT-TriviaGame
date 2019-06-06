@@ -34,9 +34,7 @@ $(document).ready(function () {
     $("#start-button").click(startGame);
     $(".choice-text").click(checkAnswer);
     $("#next-button").click(renderQuestion);
-
-
-
+    $("#playagain-button").click(resetGame);
 
 });
 
@@ -54,19 +52,19 @@ var questionsArr = [
         question: "What is the sigil of house Stark?",
         options: ['Direwolf', 'Dragon', 'Rose', 'Lion'],
         answer: "Direwolf",
-        gif_url: ""
+        gif_url: "https://media.giphy.com/media/iwVHUKnyvZKEg/giphy.gif"
     },
     {
         question: "What is Dany\'s black dragon\s name?",
         options: ['Viserion', 'Drogon', 'Veraxes', 'Balerion'],
         answer: "Drogon",
-        gif_url: ""
+        gif_url: "https://media.giphy.com/media/iwVHUKnyvZKEg/giphy.gif"
     },
     {
         question: "How many children did Ned Stark Have?",
         options: ['6', '2', '1', '3'],
         answer: "6",
-        gif_url: ""
+        gif_url: "https://media.giphy.com/media/iwVHUKnyvZKEg/giphy.gif"
     }
     // ...
 ];
@@ -81,6 +79,7 @@ function startGame() {
     $("#ready-gif-row").hide();
     $("#timer-row").show();
 
+    //clears score
     triviaObj.correct = 0;
     triviaObj.incorrect = 0;
 
@@ -256,4 +255,14 @@ function startTimer() {
 
 function stopTimer() {
     clearInterval(triviaObj.timerId);
+}
+
+function resetGame () {
+    triviaObj.timer = 15;
+    triviaObj.correct = 0;
+    triviaObj.incorrect = 0;
+    triviaObj.unanswered = 0;
+    questionIndex = 0;
+    $("#endscreen-row").hide();
+    startGame();
 }
