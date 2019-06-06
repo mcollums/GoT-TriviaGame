@@ -26,9 +26,13 @@ $(document).ready(function () {
     $(".padding-row").hide();
     $("#choice1-row").hide();
     $("#choice2-row").hide();
+    $("#result-gif-row").hide();
+    $("#results-row").hide();
 
     $("#start-button").click(startGame);
-    $(".choice-text").click(checkAnswer)
+    $(".choice-text").click(checkAnswer);
+    $("#next-button").click(renderQuestion);
+
 
 
 });
@@ -76,13 +80,17 @@ function startGame() {
 
     triviaObj.correct = 0;
     triviaObj.incorrect = 0;
-    startTimer();
+    // startTimer();
     renderQuestion();
 };
 
 
 function renderQuestion() {
     // hide all the results-related elements first
+    $("#result-gif-row").hide();
+    $("#results-row").hide();
+
+    startTimer();
 
     // If there are still more questions, render the next one.
     if (questionIndex < questionsArr.length) {
@@ -101,7 +109,6 @@ function renderQuestion() {
         $(".padding-row").show();
         $("#choice1-row").show();
         $("#choice2-row").show();
-        questionIndex++;
 
         // show the game-related elements
     }
@@ -113,23 +120,69 @@ function renderQuestion() {
 
 function checkAnswer() {
     var outcome;
+    console.log(questionsArr[questionIndex].answer)
     if ($(this).text() === questionsArr[questionIndex].answer) {
         // answered correctly
+        triviaObj.correct++;
         outcome = "correct";
-    }
-    else {
+    } else {
         // answered incorrectly
+        triviaObj.incorrect++;
         outcome = "incorrect";
     }
     // call the "showResult" function
-    showResults(outcome);
+    showResult(outcome);
 
     // at some point, we need to run renderQuestion again
 };
 
 function showResult(outcome) {
-    // show either good or bad stuff, depending on what outcome is
+    $("#question-row").hide();
+    $(".padding-row").hide();
+    $("#choice1-row").hide();
+    $("#choice2-row").hide();
+    $("#result-gif-row").show();
+    $("#results-row").show();
+
+    stopTimer();
     //  - start a 5-ish second timer, running "renderQuestion" function afterward
+    var showResultTimer = 5;
+    triviaObj.timerId = setInterval(decrement, 1000);
+    $("#timer-heading").text("Time Left: " + showResultTimer);
+    
+    //decreases interval by 1 every second
+    function decrement() {
+        showResultTimer--;
+        $("#timer-heading").text("Time Left: " + showResultTimer);
+        if (showResultTimer === 0) {
+            renderQuestion();    
+            questionIndex++;       
+        }
+    };
+
+    // show either good or bad stuff, depending on what outcome is
+    if (outcome === "correct") {
+        $("#result-text").text("You are correct!");
+        console.log("You are correct!");
+    } else if (outcome === "incorrect") {
+        $("#result-text").text("You are incorrect! The correct answer was" + questionsArr[questionIndex].answer);
+        console.log("You are correct!");
+    } else if (outcome === "unanswered") {
+        $("#result-text").text("Time has run out! The correct answer was" + questionsArr[questionIndex].answer);
+        console.log("Left Unanswered");
+    }
+
+    switch (questionIndex) { 
+        case 0: 
+            $("#gif-result").attr("src","https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+            break;
+        case 1: 
+            $("#gif-result").attr("src","https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+            break;
+        case 2: 
+            $("#gif-result").attr("src","https://giphy.com/gifs/eyebrows-brows-iwVHUKnyvZKEg");
+            break;	
+    }
 };
 
 function endScreen() {
@@ -149,50 +202,14 @@ function startTimer() {
         triviaObj.timer--;
         $("#timer-heading").text("Time Left: " + triviaObj.timer);
         if (triviaObj.timer === 0) {
-            clearInterval(triviaObj.timerId);
+            clearInterval(triviaObj.timer);
             triviaObj.unanswered++;
             // alert("Time's Up!");
-            showResults("unanswered");
+            showResult("unanswered");
         }
     };
 };
 
-// function nextQuestion() {
-//     this.timer = 20;
-//     questionCount = 0;
-//     // for (var i = 0; i <= questions.length)
-//     for (const key in questions) {
-//         let value = obj[key];
-//     }
-//     if (questionCount === 0) {
-//         $('#question-heading').text('Question: ' + this.questions.q1);
-//         $('#choice-1').text(this.options.q1[0]);
-//         $('#choice-2').text(this.options.q1[1]);
-//         $('#choice-3').text(this.options.q1[2]);
-//         $('#choice-4').text(this.options.q1[3]);
-
-//     } else if (questionCount === 1) {
-//         $('#question-heading').text('Question: ' + this.questions.q2);
-//         $('#choice-1').text(this.options.q2[0]);
-//         $('#choice-2').text(this.options.q2[1]);
-//         $('#choice-3').text(this.options.q2[2]);
-//         $('#choice-4').text(this.options.q2[3]);
-
-//     } else if (questionCount === 2) {
-//         $('#question-heading').text('Question: ' + this.questions.q3);
-//         $('#choice-1').text(this.options.q3[0]);
-//         $('#choice-2').text(this.options.q3[1]);
-//         $('#choice-3').text(this.options.q3[2]);
-//         $('#choice-4').text(this.options.q4[3]);
-
-//     } else if (questionCount === 3) {
-//         $('#question-heading').text('Question: ' + this.questions.q4);
-//     } else if (questionCount === 4) {
-//         $('#question-heading').text('Question: ' + this.questions.q5);
-//     } else if (questionCount === 5) {
-//         $('#question-heading').text('Question: ' + this.questions.q6);
-//     } else if (questionCount === 6) {
-//         $('#question-heading').text('Question: ' + this.questions.q7);
-//     };
-//     // };
-// };
+function stopTimer () {
+    clearInterval(triviaObj.timerId);
+}
