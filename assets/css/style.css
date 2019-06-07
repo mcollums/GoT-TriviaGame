@@ -33,7 +33,7 @@ body {
 }
 
 .choice-block:hover {
-    background-color: #F7DE3B;
+    background-color: rgb(252, 230, 88);
     height: 200px;
     border-radius: 25px;
     transform: scale(1.06);
@@ -99,10 +99,7 @@ body {
 
 #gif-result {
     min-width: 50%;
-
     min-height: 20%;
-
-
 }
 
 /* Endscreen Formatting */

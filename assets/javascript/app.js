@@ -179,7 +179,7 @@ var questionsArr = [
     {
         // number = 17
         question: "What is Hodor’s real name?",
-        options: ["Willam", "Walder", "Walis", "Wylis"],
+        options: ["Willam", "Wylis", "Walis", "Walder"],
         answer: "Wylis",
         gif: "https://media.giphy.com/media/hz69YUpLt247u/giphy.gif",
         tidbit: "Meera shouting the phrase \"Hold the door!\" through Bran and begins repeating it, eventually slurring the sentence together until it becomes \"Hodor\". Through Bran's warging, young Wylis experiences his own future death, damaging his mind, and explaining his simplistic and monotonous nature."
@@ -224,7 +224,7 @@ function startGame() {
     triviaObj.correct = 0;
     triviaObj.incorrect = 0;
 
-    // startTimer();
+    //Populates first question
     renderQuestion();
 };
 
@@ -238,7 +238,7 @@ function renderQuestion() {
     triviaObj.timer = 20;
     startTimer();
 
-    //If the game has been played once, add tothe questionsIndex
+    //If the game has been played once, add to the questionsIndex
     if (triviaObj.correct > 0 || triviaObj.incorrect > 0 || triviaObj.unanswered > 0) {
         questionIndex++;
     }
@@ -255,7 +255,7 @@ function renderQuestion() {
         $("#choice-3").text(questionsArr[questionIndex].options[2]);
         $("#choice-4").text(questionsArr[questionIndex].options[3]);
 
-
+        //Showing all "Game Screen" page elements
         $("#question-row").show();
         $(".padding-row").show();
         $("#choice1-row").show();
@@ -268,65 +268,86 @@ function renderQuestion() {
 };
 
 function checkAnswer() {
+    //storing outcome value to call in the showResults function
     var outcome;
     console.log(questionsArr[questionIndex].answer)
+    //If the choice-block that matches the answer is clicked...
     if ($(this).text() === questionsArr[questionIndex].answer) {
-        // answered correctly
+        // add point to correct
         triviaObj.correct++;
+        // var outcome is now correct
         outcome = "correct";
     } else {
-        // answered incorrectly
+        // add point to incorrect
         triviaObj.incorrect++;
+        // var outcome is now incorrect
         outcome = "incorrect";
     }
     // call the "showResult" function
     showResult(outcome);
-
-    // at some point, we need to run renderQuestion again
 };
 
 function showResult(outcome) {
+    //Hiding all the "Game" elements
     $("#question-row").hide();
     $(".padding-row").hide();
     $("#choice1-row").hide();
     $("#choice2-row").hide();
+
+    //Showing all the "Results" elements
     $("#result-gif-row").show();
     $("#results-row").show();
 
+    //Stoping timer
     stopTimer();
-    //function to start a 5 second timer
+
+    //Function to start a 15 second timer until the next question is displayed
     function resultTimer() {
+        //Result timer set to 15s
         var showResultTimer = 15;
+        //Timerid is decreased every second
         triviaObj.timerId = setInterval(decrement, 1000);
+        //Showing how much time is left in the timer heading
         $("#timer-heading").text("Time Left: " + showResultTimer);
 
         //decreases interval by 1 every second
         function decrement() {
+            // Result timer is decreased by 1 every second
             showResultTimer--;
+            //Showing how much time is left in the timer heading
             $("#timer-heading").text("Time Left: " + showResultTimer);
+            // When the timer is 0...
             if (showResultTimer === 0) {
+                //Show the next question
                 renderQuestion();
             }
         }
     };
 
+    //Start timer for the "results page"
     resultTimer();
+
+    //The gif for the answer is displayed
     $("#gif-result").attr("src", questionsArr[questionIndex].gif);
+    //The tidbit for the answer is displayed
     $("#result-p").text(questionsArr[questionIndex].tidbit);
 
 
     // If the user presses the correct block...
     if (outcome === "correct") {
+        //Result text is, "You are correct"
         $("#result-text").text("You are correct!");
         console.log("You are correct! " + triviaObj.correct + ".");
     }
     // If the user presses the incorrect block...
     else if (outcome === "incorrect") {
+        //Result text is, "You are incorrect"
         $("#result-text").text("You are incorrect! The correct answer was " + questionsArr[questionIndex].answer + ".");
         console.log("You are correct! " + triviaObj.correct);
     }
     //If the user lets the timer runout...
     else if (outcome === "unanswered") {
+        //Result text is, "Time's run out"
         $("#result-text").text("Time has run out! The correct answer was " + questionsArr[questionIndex].answer + ".");
         console.log("Left Unanswered. " + triviaObj.unanswered);
     }
@@ -350,17 +371,21 @@ function showEndscreen() {
     //If correct answer is 17-20 then...
     if (triviaObj.correct >= 17) {
         $("#endscreen-text").text("You're a real fan!! You got " + triviaObj.correct + " out of 20 right!");
+    } 
         //If correct answer is 13-16 then...
-    }   else if (triviaObj.correct >= 13 && triviaObj.correct <= 16) {
+        else if (triviaObj.correct >= 13 && triviaObj.correct <= 16) {
         $("#endscreen-text").text("Pretty good, you got " + triviaObj.correct + " out of 20 right!");
+    }   
         //If correct answer is 10-12 then...
-    } else if (triviaObj.correct >= 10 && triviaObj.correct <= 12) {
+        else if (triviaObj.correct >= 10 && triviaObj.correct <= 12) {
         $("#endscreen-text").text("Pretty good, you got " + triviaObj.correct + " out of 20 right!");
+    }   
         //If correct answer is 5-9 then...
-    } else if (triviaObj.correct >= 5 && triviaObj.correct <= 9) {
+        else if (triviaObj.correct >= 5 && triviaObj.correct <= 9) {
         $("#endscreen-text").text("Meh, you got " + triviaObj.correct + " out of 20 right. Try again!");
+    }   
         //If correct answer is 0-4 then...
-    } else if (triviaObj.correct <= 4) {
+        else if (triviaObj.correct <= 4) {
         $("#endscreen-text").text("Ouch. You got " + triviaObj.correct + " out of 20 right. Try again!");
     }
 
@@ -373,17 +398,26 @@ function showEndscreen() {
 
 //Function that starts the timer
 function startTimer() {
+    //TimerID is cleared
     clearInterval(triviaObj.timerId);
+    //timerId is decreased every second
     triviaObj.timerId = setInterval(decrement, 1000);
+    //displays the time remaining in the timerheading
     $("#timer-heading").text("Time Left: " + triviaObj.timer);
 
     //decreases interval by 1 every second
     function decrement() {
+        //timer decreases by one
         triviaObj.timer--;
+        //displays the time remaining in the timerheading
         $("#timer-heading").text("Time Left: " + triviaObj.timer);
+        //When the timer runs out...
         if (triviaObj.timer === 0) {
+            //Stop/Clear the timer;
             clearInterval(triviaObj.timer);
+            //Unanswered count increased by one
             triviaObj.unanswered++;
+            //Run the showResult function with the arguement "Unanswered"
             showResult("unanswered");
         }
     };
@@ -401,6 +435,8 @@ function resetGame() {
     triviaObj.incorrect = 0;
     triviaObj.unanswered = 0;
     questionIndex = 0;
+    //hides the "End Screen"
     $("#endscreen-row").hide();
+    //Starts the game over from the beginning
     startGame();
 }
