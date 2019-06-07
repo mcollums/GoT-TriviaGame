@@ -32,7 +32,7 @@ $(document).ready(function () {
 
 
     $("#start-button").click(startGame);
-    $(".choice-text").click(checkAnswer);
+    $(".choice-block").click(checkAnswer);
     $("#next-button").click(renderQuestion);
     $("#playagain-button").click(resetGame);
 
