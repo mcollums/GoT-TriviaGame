@@ -62,7 +62,7 @@ var questionsArr = [
         options: ['Five Times', 'Three Times', 'Seven Times', 'Six Times'],
         answer: 'Six Times',
         gif: "https://66.media.tumblr.com/1a0196d5af0685cd6737cb31b6e3e320/tumblr_ov3rxm1Bva1s5m21go1_500.gif",
-        tidbit: "Beric Dondarrion has been resurrected by the God of Light a total of six times. His constant cheating of death comes with a price: each time, he explains, he looses some of his memories and is less himself."
+        tidbit: "Beric Dondarrion has been resurrected by the Lord of Light a total of six times. His constant cheating of death comes with a price: each time, he explains, he looses some of his memories and is less himself."
     },
     {
         // number = 3;
@@ -70,7 +70,7 @@ var questionsArr = [
         options: ["All Men Must Live", "All Men Must Serve", "All Men Must Grow", "All Men Must Fight"],
         answer: "All Men Must Serve",
         gif: "https://media.giphy.com/media/c1oP0AunRfP7a/giphy.gif",
-        tidbit: "The Season 2 finale was named \"Valar Morghulis\" while the Season 3 premiere was named \"Valar Dohaeris.\" In 2014, the Brewery Ommegang created a beer called \"Valar Morghulis,\" with each cork fire-branded with the response."
+        tidbit: "There's a deeper meaning to these two greetings, which double up as historical proverbs regarding the Braavosi and the House of Black and White, the headquarters of the mysterious religious cult of the Faceless Men, in the city of Braavos."
     },
     {
         // number = 4
@@ -122,11 +122,11 @@ var questionsArr = [
     },
     {
         // number = 10
-        question: "Only Eastwatch by the sea, castle black and ____ are manned by the Nights Watch",
+        question: "Only Eastwatch by the sea, castle black and ____ are manned by the Nights Watch.",
         options: ["Nightfort", "Greenguard", "Deep Lake", "Shadow Tower"],
         answer: "Shadow Tower",
         gif: "https://media.giphy.com/media/3oEjHUf7j0aFDce0dG/giphy.gif",
-        tidbit: "The Night's Watch raised nineteen castles to guard the hundred leagues of the Wall, although they have never manned more than seventeen at one time. The most western castle, Shadow Tower, is garrisoned by two hundred men."
+        tidbit: "The Night's Watch raised nineteen castles to guard the hundred leagues of the Wall, although they have never manned more than seventeen at one time. The most western castle, Shadow Tower, was garrisoned by two hundred men."
     },
     {
         // number = 11
@@ -142,7 +142,7 @@ var questionsArr = [
         options: ["Jamie Lannister", "Thoros of Myr", "The Hound", "Melisandre"],
         answer: "Jamie Lannister",
         gif: "https://media2.giphy.com/media/msWAqLGnlgvvi/giphy.gif?cid=790b76115cf9da7538725477456d1efe&rid=giphy.gif",
-        tidbit: "Out of 13 people on Arya’s kill list, she only killed Rorge, Ser Meryn Trant, Polliver and Walder Frey. Others are removed from the list, died in other ways or in Ser Ilyn Payne’s case, removed from the show."
+        tidbit: "Out of 13 people on Arya’s kill list, she only killed Rorge, Ser Meryn Trant, Polliver and Walder Frey. Others are removed from the list, died in other ways or in Ser Ilyn Payne’s case, are removed from the show."
     },
     {
         // number = 13
@@ -154,7 +154,7 @@ var questionsArr = [
     },
     {
         // number = 14
-        question: "What is the surname given to bastards in the Reach?",
+        question: "What is the surname given to highborn bastards in the Reach?",
         options: ["Thorn", "Flowers", "Garden", "Hill"],
         answer: "Flowers",
         gif: "https://media.giphy.com/media/PfzDNs7r1tw88/giphy.gif",
@@ -174,7 +174,7 @@ var questionsArr = [
         options: ["Mussles", "Clams", "Crabs", "Scallops"],
         answer: "Clams",
         gif: "https://media1.tenor.com/images/2879af71b7f6080c435c6db214bf053a/tenor.gif",
-        tidbit: "Arya's first assignment from the House of Black and White is to pose as a shellfish merchant to study a target known as \"the Thin Man\" but she gets distracted when she sees Ser Meryn Trant who is on her kill list."
+        tidbit: "Arya's first assignment from the House of Black and White is to pose as a shellfish merchant and study a target known as \"the Thin Man\" but she gets distracted when she sees Ser Meryn Trant who is on her kill list."
     },
     {
         // number = 17
@@ -198,7 +198,7 @@ var questionsArr = [
         options: ["Breaker of Chains", "Mother of Dragons", "The Unbroken", "Protector of the Seven Kingdoms"],
         answer: "The Unbroken",
         gif: "https://media1.tenor.com/images/37ca645867080e61f0daba3c94d975d7/tenor.gif",
-        tidbit: "Daenerys earned the nickname The Unburnt after she survived walking into a funeral pyre at the end of the first season."
+        tidbit: "Daenerys earned the nickname \"The Unburnt\" after she survived walking into a funeral pyre at the end of the first season."
     },
     {
         // number = 20
