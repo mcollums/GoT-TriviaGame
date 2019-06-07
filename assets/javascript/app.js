@@ -157,7 +157,7 @@ var questionsArr = [
         question: "What is the surname given to highborn bastards in the Reach?",
         options: ["Thorn", "Flowers", "Garden", "Hill"],
         answer: "Flowers",
-        gif: "https://media.giphy.com/media/PfzDNs7r1tw88/giphy.gif",
+        gif: "https://media1.popsugar-assets.com/files/thumbor/qLV9fML19r7bzrWPhNPEopy2ouA/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2017/07/23/168/n/1922283/f99bf8c6c998a407_tumblr_myix4p6Bjd1r3i7aho1_500.gif",
         tidbit: "Waters for King’s Landing and Dragonstone, Snow for the North, Pyke for the Iron Islands, Rivers for the Riverlands, Stone for the Vale, Hill for the Westerlands, Flowers for the Reach, Storm for the Stormlands and Sand for Dorne."
     },
     {
