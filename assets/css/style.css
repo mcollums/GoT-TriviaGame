@@ -26,9 +26,17 @@ body {
 }
 
 .choice-block {
-    /* background-color: rgb(255, 227, 66); */
+    background-color: #F7DE3B;
     height: 200px;
     border-radius: 25px;
+    transition: all .2s ease-in-out;
+}
+
+.choice-block:hover {
+    background-color: #F7DE3B;
+    height: 200px;
+    border-radius: 25px;
+    transform: scale(1.06);
 }
 
 .choice-text {
