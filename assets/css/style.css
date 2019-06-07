@@ -3,15 +3,14 @@
 }
 
 body {
-    background-image: url("../images/background.jpg");
-    /* background-repeat: no-repeat;
-    background-attachment: fixed; */
-    background-position: center; 
+    background-image: url("../images/background2.jpg");
+    background-position: 0px -10px; 
     font-family: 'Raleway', sans-serif;
+    color:white;
 }
 
 .container-custom {
-    background-color: white;
+    background-color: #386c86e8;
     border-radius: 25px;
     margin-top: 50px;
     height: 800px;
@@ -30,6 +29,7 @@ body {
     height: 200px;
     border-radius: 25px;
     transition: all .2s ease-in-out;
+    color: #172d38;
 }
 
 .choice-block:hover {
@@ -45,20 +45,24 @@ body {
 
 #title-heading {
     height: 140px;
-    margin-top: 10px;
+    margin-top: 15px;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
 }
 
 #title-image {
-    width: 70%;
+    width: 82%;
 }
 
 /* Instructions/Start Page Formatting */
 #ready-gif-row {
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 #instructions-row {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 #instructions-p {
@@ -82,15 +86,23 @@ body {
 
 /* Results Page Formatting */
 #result-gif-row {
-    margin-top: 55px;
+    margin-top: 35px;
 }
 
 #results-row {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 #next-button {
     margin-top: 15px;
+}
+
+#gif-result {
+    min-width: 50%;
+
+    min-height: 20%;
+
+
 }
 
 /* Endscreen Formatting */
