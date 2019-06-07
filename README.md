@@ -1,5 +1,4 @@
 # Trivia-Game
-## UT Bootcamp Homework 5
 This is a fun Game of Thrones Themed Trivia Game. 
 
 ### Instructions
